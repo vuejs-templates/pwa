@@ -18,6 +18,19 @@
   </head>
   <body>
     <div id="app"></div>
+    <!-- Todo: only include in production -->
+    <script>
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+          .then(function(registration) {
+                console.log('Service Worker Registered');
+          });
+
+        navigator.serviceWorker.ready.then(function(registration) {
+           console.log('Service Worker Ready');
+        });
+      }
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>
