@@ -17,6 +17,10 @@
     <!-- Add to home screen for Windows -->
     <meta name="msapplication-TileImage" content="/static/img/icons/icon-144x144.png">
     <meta name="msapplication-TileColor" content="#000000">
+    <% for (var chunk of webpack.chunks) {
+        for (var file of chunk.files) {
+          if (file.match(/\.(js|css)$/)) { %>
+    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
   </head>
   <body>
     <div id="app">This is your fallback content in case JavaScript fails to load.</div>
