@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="./assets/logo.png" alt="Vue PWA">
     {{#router}}
     <router-view></router-view>
     {{else}}
