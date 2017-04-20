@@ -25,6 +25,12 @@ If port 8080 is already in use on your machine you must change the port number i
 
 ## What's Included
 
+* Service Worker precaching of application shell + static assets (prod)
+* Script (async chunk) preloading using `<link rel="preload">`
+* Web Application Manifest + favicons
+* Mobile-friendly meta-viewport
+* Lighthouse score of 90+/100
+
 - `npm run dev`: first-in-class development experience.
   - Webpack + `vue-loader` for single file Vue components.
   - State preserving hot-reload
