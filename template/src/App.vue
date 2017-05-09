@@ -59,7 +59,7 @@ header span {
   line-height: 1;
   letter-spacing: .02em;
   font-weight: 400;
-  box-sizing: border-box; 
-  padding-top: 16px; 
+  box-sizing: border-box;
+  padding-top: 16px;
 }
 </style>
