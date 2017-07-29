@@ -14,6 +14,11 @@ module.exports = {
       "required": true,
       "message": "Project name"
     },
+    "short_name": {
+      "type": "string",
+      "required": false,
+      "message": "Project short name: fewer than 12 characters to not be truncated on homescreens (default: same as name)",
+    },
     "description": {
       "type": "string",
       "required": false,

@@ -1,6 +1,6 @@
 {
   "name": "{{ name }}",
-  "short_name": "{{ name }}",
+  "short_name": "{{#if short_name }}{{ short_name }}{{else}}{{ name }}{{/if}}",
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",
