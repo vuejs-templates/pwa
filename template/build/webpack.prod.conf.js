@@ -11,6 +11,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 var loadMinified = require('./load-minified')
+var PreloadWebpackPlugin = require('preload-webpack-plugin')
 
 var env = {{#if_or unit e2e}}process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -71,6 +72,11 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency',
       serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname,
         './service-worker-prod.js'))}</script>`
+    }),
+    new PreloadWebpackPlugin({
+    rel: 'preload',
+    as: 'script',
+    include: 'asyncChunks'
     }),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
