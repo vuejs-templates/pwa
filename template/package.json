@@ -97,7 +97,8 @@
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0",
-    "uglify-es": "^3.0.25"
+    "uglify-es": "^3.0.25",
+    "preload-webpack-plugin": "^1.2.3"
   },
   "engines": {
     "node": ">= 4.0.0",
