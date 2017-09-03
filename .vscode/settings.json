@@ -1,0 +1,29 @@
+{
+	"window.zoomLevel": 1,
+	"editor.tabSize": 2,
+	"emmet.syntaxProfiles": {
+		"javascript": "jsx",
+		"vue-html": "html",
+		"vue": "html"
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/.DS_Store": true,
+		"**/node_modules": true,
+		"**/.tmp": true,
+		"**/.idea": true
+	},
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.formatOnSave": false,
+	"files.trimTrailingWhitespace": true,
+	"prettier.printWidth": 120,
+	"workbench.editor.enablePreviewFromQuickOpen": false,
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 2,
+	"prettier.singleQuote": true,
+	"prettier.trailingComma": "all",
+	"extensions.ignoreRecommendations": false
+}
