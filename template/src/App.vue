@@ -4,7 +4,6 @@
       <span>Vue.js PWA</span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
       {{#router}}
       <router-view></router-view>
       {{else}}
