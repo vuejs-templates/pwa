@@ -10,6 +10,12 @@ If you want to prerender routes that will not significantly change once pushed t
 npm install --save-dev prerender-spa-plugin
 ```
 
+or
+
+``` bash
+yarn add prerender-spa-plugin --dev
+```
+
 2. Require it in **build/webpack.prod.conf.js**:
 
 ```js
