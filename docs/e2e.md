@@ -6,7 +6,7 @@ Let's take a look at the files in the `test/e2e` directory:
 
 - `runner.js`
 
-  A Node.js script that starts the dev server, and then launches Nightwatch to run tests against it. This is the script that will run when you run `npm run e2e`.
+  A Node.js script that starts the dev server, and then launches Nightwatch to run tests against it. This is the script that will run when you run `npm run e2e` or `yarn e2e`.
 
 - `nightwatch.conf.js`
 

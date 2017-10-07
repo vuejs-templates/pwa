@@ -5,6 +5,11 @@ This boilerplate has pre-configured CSS extraction for most popular CSS pre-proc
 ``` bash
 npm install sass-loader node-sass --save-dev
 ```
+or
+
+``` bash
+yarn add sass-loader node-sass --dev
+```
 
 Note you also need to install `node-sass` because `sass-loader` depends on it as a peer dependency.
 
