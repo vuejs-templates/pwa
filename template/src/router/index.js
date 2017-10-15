@@ -5,11 +5,12 @@ import Home from '@/components/Home'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 Vue.use(Router){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  ]{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+	mode: 'history',
+	routes: [
+		{
+			path: '/',
+			name: 'Home',
+			component: Home{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+		}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+	]{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}

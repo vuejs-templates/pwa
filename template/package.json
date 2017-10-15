@@ -15,7 +15,7 @@
   },
   "dependencies": {
 		"normalize.css": "7.0.0",
-		"vue": "^2.3.3"{{#router}},
+		"vue": "2.5.2"{{#router}},
     "vue-router": "^2.3.1"{{/router}}
   },
   "devDependencies": {
@@ -91,7 +91,7 @@
     "ora": "^1.2.0",
     "rimraf": "^2.6.0",
     "url-loader": "^0.5.8",
-    "vue-loader": "^12.1.0",
+    "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.3.3",
     "webpack": "^2.6.1",
@@ -110,6 +110,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 10"
+    "not ie <= 11"
   ]
 }
