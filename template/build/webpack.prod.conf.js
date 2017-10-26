@@ -71,6 +71,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency',
+      subDirectory: config.build.assetsSubDirectory,
       serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname,
         './service-worker-prod.js'))}</script>`
     }),
@@ -106,9 +107,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'my-vue-app',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: [ config.build.assetsRoot + '/**/*.{js,html,css}'],
       minify: true,
-      stripPrefix: 'dist/'
+      stripPrefix: config.build.assetsRoot
     })
   ]
 })
