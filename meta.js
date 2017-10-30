@@ -62,15 +62,15 @@ module.exports = {
       "type": "list",
       "message": "Pick an ESLint preset",
       "choices": [
+				{
+					"name": "Airbnb (https://github.com/airbnb/javascript)",
+					"value": "airbnb",
+					"short": "Airbnb"
+				},
         {
           "name": "Standard (https://github.com/feross/standard)",
           "value": "standard",
           "short": "Standard"
-        },
-        {
-          "name": "Airbnb (https://github.com/airbnb/javascript)",
-          "value": "airbnb",
-          "short": "Airbnb"
         },
         {
           "name": "none (configure it yourself)",

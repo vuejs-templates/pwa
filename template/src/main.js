@@ -16,7 +16,7 @@ import router from './router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 const instance = axios.create({
 	baseURL: process.env.URL,
 });
-Vue.prototype.$http = axios.instance;
+Vue.prototype.$http = instance;
 {{/axios}}
 Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
