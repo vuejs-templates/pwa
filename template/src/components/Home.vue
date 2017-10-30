@@ -1,17 +1,17 @@
 <template>
-  <div class="hello">
-    <h1>{{msg}}</h1>
-  </div>
+	<div class="hello">
+		<h1>{{msg}}</h1>
+	</div>
 </template>
 
 <script>
 export default {
-  name: 'home',
-  data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-    return {
-      msg: 'Welcome to Your Vue.js PWA'{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+	name: 'home',
+	data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+		return {
+			msg: 'Welcome to Your Vue.js PWA'{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+		}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+	}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
