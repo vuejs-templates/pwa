@@ -1,6 +1,7 @@
 'use strict'
 
 require('./check-versions')()
+require('dotenv').config()
 
 process.env.NODE_ENV = 'production'
 

@@ -48,7 +48,11 @@ module.exports = {
     "router": {
       "type": "confirm",
       "message": "Install vue-router?"
-    },
+		},
+		"axios": {
+			"type": "confirm",
+			"message": "Install axios?"
+		},
     "lint": {
       "type": "confirm",
       "message": "Use ESLint to lint your code?"
@@ -58,15 +62,15 @@ module.exports = {
       "type": "list",
       "message": "Pick an ESLint preset",
       "choices": [
+				{
+					"name": "Airbnb (https://github.com/airbnb/javascript)",
+					"value": "airbnb",
+					"short": "Airbnb"
+				},
         {
           "name": "Standard (https://github.com/feross/standard)",
           "value": "standard",
           "short": "Standard"
-        },
-        {
-          "name": "Airbnb (https://github.com/airbnb/javascript)",
-          "value": "airbnb",
-          "short": "Airbnb"
         },
         {
           "name": "none (configure it yourself)",
