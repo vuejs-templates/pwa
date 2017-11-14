@@ -63,3 +63,13 @@ You can fork this repo to create your own boilerplate, and use it with `vue-cli`
 ``` bash
 vue init username/repo my-project
 ```
+
+## Contributing
+
+This project is a modified copy of the [`vue-webpack-boilerplate`](https://github.com/vuejs-templates/webpack) template.
+
+While we welcome contributions from the community, please note that changes to configuration that is shared between this project and `vue-webpack-boilerplate` should be made against `vue-webpack-boilerplate` *first*.
+
+Once the [upstream](https://stackoverflow.com/a/2739476/385997) PR is merged, please file an additional PR against this project making the equivalent changes. This will help ensure that the shared configuration does not diverge too much.
+
+Any changes that are specific to this project—related to service workers, or other PWA functionality—do not need an equivalent upstream PR.
