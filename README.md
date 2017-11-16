@@ -22,6 +22,14 @@ $ npm run dev
 
 If port 8080 is already in use on your machine you must change the port number in `/config/index.js`. Otherwise `npm run dev` will fail.
 
+## What's not Included
+
+* You should configure your web server to add HTTP headers to prevent caching of critical service worker files.
+If you don't do this, [browsers might cache the content for up to 24 hours](https://stackoverflow.com/questions/38843970/service-worker-javascript-update-frequency-every-24-hours/38854905#38854905).
+In addition, you should add HTTP headers to prevent the contents of the static folder to be cached unintentionally long.
+
+See ["Configuring your Web server to prevent caching"](docs/prevent_caching.md) in the docs for more information.
+
 ## What's Included
 
 * Service Worker precaching of application shell + static assets (prod)
