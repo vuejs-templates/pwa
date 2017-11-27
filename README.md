@@ -12,7 +12,7 @@
 
 This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). **It is recommended to use npm 3+ or [yarn](https://yarnpkg.com) for a more efficient dependency tree.**
 
-``` bash
+```bash
 $ npm install -g vue-cli
 $ vue init pwa my-project
 $ cd my-project
@@ -60,6 +60,6 @@ If port 8080 is already in use on your machine you must change the port number i
 
 You can fork this repo to create your own boilerplate, and use it with `vue-cli`:
 
-``` bash
+```bash
 vue init username/repo my-project
 ```
