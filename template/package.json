@@ -5,8 +5,8 @@
   "author": "{{ author }}",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "build": "node build/build.js"{{#unit}},
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run"{{/unit}}{{#e2e}},
     "e2e": "node test/e2e/runner.js"{{/e2e}}{{#if_or unit e2e}},
@@ -30,7 +30,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "chalk": "^2.1.0",
-    "connect-history-api-fallback": "^1.4.0",
     "copy-webpack-plugin": "^4.1.1",
     "css-loader": "^0.28.7",
     "cssnano": "^3.10.0",
@@ -52,12 +51,10 @@
     {{/if_eq}}
     {{/lint}}
     "eventsource-polyfill": "^0.9.6",
-    "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.5",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
-    "http-proxy-middleware": "^0.17.4",
     "webpack-bundle-analyzer": "^2.9.0",
     {{#unit}}
     "cross-env": "^5.0.5",
@@ -78,6 +75,7 @@
     "babel-plugin-istanbul": "^4.1.5",
     "phantomjs-prebuilt": "^2.1.15",
     {{/unit}}
+    "node-notifier": "^5.1.2",
     {{#e2e}}
     "chromedriver": "^2.33.1",
     "cross-spawn": "^5.1.0",
@@ -86,7 +84,6 @@
     {{/e2e}}
     "semver": "^5.4.1",
     "shelljs": "^0.7.8",
-    "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.3.0",
     "rimraf": "^2.6.2",
@@ -95,8 +92,7 @@
     "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.7.1",
-    "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.19.1",
+    "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0",
     "uglify-es": "^3.1.3"
   },
