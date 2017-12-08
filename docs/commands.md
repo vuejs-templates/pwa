@@ -2,7 +2,7 @@
 
 All build commands are executed via [NPM Scripts](https://docs.npmjs.com/misc/scripts).
 
-### `npm run dev`
+### `npm run dev` or `yarn dev`
 
 > Starts a Node.js local development server. See [API Proxying During Development](proxy.md) for more details.
 
@@ -12,7 +12,7 @@ All build commands are executed via [NPM Scripts](https://docs.npmjs.com/misc/sc
 - Lint-on-save with ESLint
 - Source maps
 
-### `npm run build`
+### `npm run build` or `yarn build`
 
 > Build assets for production. See [Integrating with Backend Framework](backend.md) for more details.
 
@@ -22,7 +22,7 @@ All build commands are executed via [NPM Scripts](https://docs.npmjs.com/misc/sc
 - All static assets compiled with version hashes for efficient long-term caching, and a production `index.html` is auto-generated with proper URLs to these generated assets.
 - Generates a Service Worker for offline caching your static assets using [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin)
 
-### `npm run unit`
+### `npm run unit` or `yarn unit`
 
 > Run unit tests in PhantomJS with [Karma](https://karma-runner.github.io/). See [Unit Testing](unit.md) for more details.
 
@@ -30,7 +30,7 @@ All build commands are executed via [NPM Scripts](https://docs.npmjs.com/misc/sc
 - Supports all webpack loaders.
 - Easy [mock injection](http://vuejs.github.io/vue-loader/en/workflow/testing-with-mocks.html).
 
-### `npm run e2e`
+### `npm run e2e` or `yarn e2e`
 
 > Run end-to-end tests with [Nightwatch](http://nightwatchjs.org/). See [End-to-end Testing](e2e.md) for more details.
 
