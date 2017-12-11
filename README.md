@@ -20,6 +20,14 @@ $ npm install
 $ npm run dev
 ```
 
+This will scaffold the project using the `master` branch. If you wish to use the latest version of the PWA template, do the following instead:
+
+``` bash
+$ vue init pwa#development my-project
+```
+
+:warning: **The `development` branch is not considered stable and can contain bugs or not build at all, so use at your own risk.**
+
 If port 8080 is already in use on your machine you must change the port number in `/config/index.js`. Otherwise `npm run dev` will fail.
 
 ## What's not Included
