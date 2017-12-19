@@ -30,6 +30,40 @@ $ vue init pwa#development my-project
 
 If port 8080 is already in use on your machine you must change the port number in `/config/index.js`. Otherwise `npm run dev` will fail.
 
+## Working locally with HTTPS
+
+HTTPS is [mandatory](https://developers.google.com/web/progressive-web-apps/checklist#site-is-served-over-https) for PWA. As Webpack doesn't provide HTTPS server. Ngrok is a service that relays your local environment on a distant dns (for free).
+
+```bash
+npm install -g ngrok
+
+# Terminal 1:
+$ npm run dev
+
+# Then on a 2nd terminal:
+$ ngrok http 8080
+```
+
+The last command will give you the following
+
+```bash
+$ ngrok http 8080
+
+ngrok by @inconshreveable                                                                                                                                                                                                   (Ctrl+C to quit)
+
+Session Status                online
+Version                       2.2.8
+Region                        United States (us)
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://ada5c26b.ngrok.io -> localhost:8080
+Forwarding                    https://ada5c26b.ngrok.io -> localhost:8080
+
+Connections                   ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+```
+
+Open the given HTTPS URL in your browser (or in your device). Every request will be forwarded to your localhost.
+
 ## What's not Included
 
 * You should configure your web server to add HTTP headers to prevent caching of critical service worker files.
