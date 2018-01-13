@@ -5,18 +5,37 @@ If you are building a purely-static app (one that is deployed separately from th
 Let's take a look at the default `config/index.js`:
 
 ``` js
+// config/index.js
 'use strict'
-
 const path = require('path')
 
 module.exports = {
-  build: {
-    index: path.resolve(__dirname, 'dist/index.html'),
-    assetsRoot: path.resolve(__dirname, 'dist'),
+  dev: {
+    / Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    productionSourceMap: true
+    proxyTable: {},
+
+    // Various Dev Server settings
+    host: 'localhost',
+    port: 8080, 
+
+    // skipping other options as they are only convenience features
   },
+  build: {
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
+
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+
+    productionSourceMap: true,
+    
+    // skipping the rest ...
+  },
+//TODO: the rest of the content is not on webpack template. is it ok?
   dev: {
     port: 8080,
     proxyTable: {}
