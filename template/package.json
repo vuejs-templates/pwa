@@ -84,6 +84,9 @@
     "nightwatch": "^0.9.16",
     "selenium-server": "^3.6.0",
     {{/e2e}}
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.8",
+    "postcss-url": "^7.2.1",
     "semver": "^5.4.1",
     "shelljs": "^0.7.8",
     "opn": "^5.1.0",
