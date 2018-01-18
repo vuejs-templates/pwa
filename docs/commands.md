@@ -28,7 +28,7 @@ All build commands are executed via [NPM Scripts](https://docs.npmjs.com/misc/sc
 
 - Supports ES2015+ in test files.
 - Supports all webpack loaders.
-- Easy [mock injection](http://vuejs.github.io/vue-loader/en/workflow/testing-with-mocks.html).
+- Easy [mock injection](https://vue-loader.vuejs.org/en/workflow/testing-with-mocks.html).
 
 ### `npm run e2e`
 
@@ -38,3 +38,7 @@ All build commands are executed via [NPM Scripts](https://docs.npmjs.com/misc/sc
 - Works with one command out of the box:
   - Selenium and chromedriver dependencies automatically handled.
   - Automatically spawns the Selenium server.
+
+### `npm run lint`
+
+> Runs eslint and reports any linting errors in your code. See [Linter Configuration](linter.md)
