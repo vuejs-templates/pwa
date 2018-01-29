@@ -38,7 +38,6 @@
     "eslint": "^4.9.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.9.0",
-    "eslint-plugin-html": "^3.2.2",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.2.0",
     {{#if_eq lintConfig "standard"}}
@@ -51,6 +50,7 @@
     "eslint-import-resolver-webpack": "^0.8.1",
     {{/if_eq}}
     {{/lint}}
+    "eslint-plugin-vue": "^4.0.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.0",
