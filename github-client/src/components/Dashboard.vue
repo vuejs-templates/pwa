@@ -1,7 +1,12 @@
 <template>
     <div>
-      Dashboard of {{ viewer.name }}
-
+      <v-layout row wrap>
+        <ul >
+          <li v-for="repo in viewer.repositories.nodes">
+            {{ repo.name }}
+          </li>
+        </ul>
+      </v-layout>
     </div>
 </template>
 
@@ -14,7 +19,7 @@
       return {
         me: null,
         gh: null,
-        viewer: ''
+        viewer: []
       }
     },
     mounted () {
@@ -28,7 +33,7 @@
         query: gql`query repos($number_of_repos:Int!) {
                     viewer {
                       name
-                       repositories(last: $number_of_repos) {
+                       repositories(first: $number_of_repos) {
                          nodes {
                            name
                          }
@@ -37,7 +42,7 @@
                   }
                 `,
         variables: {
-          number_of_repos: 3
+          number_of_repos: 100
         }
       }
     }

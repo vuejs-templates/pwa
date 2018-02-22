@@ -70,7 +70,7 @@
         document.body.appendChild(p)
       },
       authenticate: function () {
-        var url = 'https://github.com/login/oauth/authorize?client_id=' + process.env.client_id + '&scope=user%20notifications%20gist&redirect_uri=' + process.env.redirect_uri
+        var url = 'https://github.com/login/oauth/authorize?client_id=' + process.env.client_id + '&scope=user%20notifications%20gist%20repo%20public_repo%20delete_repo%20user:follow%20read:user&redirect_uri=' + process.env.redirect_uri
         var link = document.createElement('a')
         link.href = url
         link.innerHTML = 'Log in with GitHub'
