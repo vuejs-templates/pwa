@@ -90,7 +90,7 @@
               //   component.renderProfile(profile)
               // })
               component.setAuthState()
-              router.push({ name: 'dashboard' })
+              router.push({ name: 'repos' })
               component.gh = new GitHub({
                 token: component.$store.getters.getToken
               })

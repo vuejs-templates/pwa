@@ -8,16 +8,16 @@
       <router-view></router-view>
     </main>
     <v-card height="200px" flat v-if="$store.getters.getAuthState" >
-      <v-bottom-nav absolute :value="true" :active.sync="activeNav" color="transparent" class="footer--fixed">
-        <v-btn flat color="blue-grey" value="repositories">
+      <v-bottom-nav absolute :value="true" :active.sync="activeNav" color="white" class="footer--fixed" >
+        <v-btn flat color="blue-grey" value="repositories" append replace to="/repos">
           <span>Repositories</span>
           <v-icon>code</v-icon>
         </v-btn>
-        <v-btn flat color="blue-grey" value="issues">
+        <v-btn flat color="blue-grey" value="issues" append replace to="/issues">
           <span>Issues</span>
           <v-icon>info</v-icon>
         </v-btn>
-        <v-btn flat color="blue-grey" value="gists">
+        <v-btn flat color="blue-grey" value="gists" append replace to="/gists">
           <span>Gists</span>
           <v-icon>description</v-icon>
         </v-btn>
