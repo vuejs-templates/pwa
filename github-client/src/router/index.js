@@ -5,6 +5,7 @@ import Dashboard from '@/components/Dashboard'
 import repos from '@/components/repos'
 import issues from '@/components/issues'
 import gists from '@/components/gists'
+import singleRepo from '@/components/singleRepo'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/gists',
       name: 'gists',
       component: gists
+    },
+    {
+      path: '/singleRepo',
+      name: 'singleRepo',
+      component: singleRepo
     }
   ]
 })

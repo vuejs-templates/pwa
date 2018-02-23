@@ -7,7 +7,12 @@
 
 <script>
   export default {
-    name: 'gists'
+    name: 'gists',
+    data () {
+      return {
+        name: 'gists'
+      }
+    }
   }
 </script>
 

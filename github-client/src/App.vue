@@ -53,6 +53,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  margin: 0;
 }
 
 main {
@@ -77,5 +78,13 @@ header span {
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
 }
 </style>

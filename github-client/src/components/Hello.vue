@@ -6,7 +6,7 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import router from '../router'
+  import router from '../router/index'
   import GitHub from 'github-api'
   var qs = require('querystring')
   // var config = require('../../config')

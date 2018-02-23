@@ -1,39 +1,34 @@
 <template>
   <div>
     <ul>
-      <li v-for="repo in viewer.repositories.nodes">
-        <div>{{ repo }}</div>
-        <v-layout>
+      <li v-for="repo in viewer.repositories.nodes.slice().reverse()">
+        <v-layout row wrap>
           <v-flex xs12 sm6 offset-sm3>
-            <v-card>
-              <v-card-media src="/static/code.jpg" height="200px">
-              </v-card-media>
+            <v-card ripple tile append replace to="/singleRepo">
               <v-card-title primary-title>
-                <div>
-                  <h3 class="headline mb-0">{{ repo.name }}</h3>
-                  <span><v-icon>star rate</v-icon>{{ repo.stargazers.totalCount}}</span>
-                  <span><v-icon>access time</v-icon>{{ repo.createdAt }}</span>
-                  <span>{{repo.forks.totalCount}}</span>
-                  <span>{{repo.diskUsage}}</span>
-                  <div>
-                    <ul>
-                      <li v-for="lang in repo.languages.nodes">
-                        <v-card>
-                          <v-card-title>
-                            <div :color="lang.color">
-
-                            </div>
-                          </v-card-title>
-                        </v-card>
-                      </li>
-                    </ul>
-                  </div>
+                <div >
+                  <p class="headline text-sm-left">{{repo.name}}</p>
+                  <p class="grey--text text-sm-left">Created {{ repo.createdAt | moment("from") }}</p>
+                  <p class="grey--text text-sm-left">Forks: {{repo.forks.totalCount}}</p>
+                  <p class="grey--text text-sm-left">Disk Usage: {{repo.diskUsage}}</p>
+                  <ul class="text-sm-left">
+                    <li v-for="lang in repo.languages.nodes">
+                      <div class="text-xs-center">
+                        <v-chip v-bind:color="lang.color">{{lang.name}}</v-chip>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </v-card-title>
-              v-card
+              <v-card-text>
+                <div>
+                  <p v-if="repo.description">{{repo.description}}</p>
+                </div>
+              </v-card-text>
               <v-card-actions>
-                <v-btn flat color="orange">Share</v-btn>
-                <v-btn flat color="orange">Explore</v-btn>
+                <v-btn flat>Fork</v-btn>
+                <!--<v-btn flat color="purple">Explore</v-btn>-->
+                <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -45,11 +40,14 @@
 
 <script>
   import gql from 'graphql-tag'
+  import Vue from 'vue'
+  Vue.use(require('vue-moment'))
   export default {
     name: 'repos',
     data () {
       return {
-        viewer: []
+        viewer: [],
+        show: false
       }
     },
     apollo: {
@@ -60,6 +58,7 @@
                        repositories(last: $number_of_repos) {
                          nodes {
                           name
+                          description
                           stargazers {
                             totalCount
                           },
