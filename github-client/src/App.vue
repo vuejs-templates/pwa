@@ -5,7 +5,11 @@
       <button v-if="$store.getters.getAuthState" v-on:click="logout">Logout</button>
     </header>
     <main>
-      <router-view></router-view>
+      <transition>
+        <keep-alive>
+          <router-view :key="$route.fullPath"></router-view>
+        </keep-alive>
+      </transition>
     </main>
     <v-card height="200px" flat v-if="$store.getters.getAuthState" >
       <v-bottom-nav absolute :value="true" :active.sync="activeNav" color="white" class="footer--fixed" >
@@ -86,5 +90,6 @@ ul {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 </style>
