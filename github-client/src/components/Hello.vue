@@ -36,7 +36,10 @@
       ]),
       getCode: function () {
         var query = window.location.href.split('?')[1]
-        if (query) return qs.parse(query.slice(0, query.length - 2)).code
+        if (query) {
+          window.history.replaceState({}, document.title, '/')
+          return qs.parse(query.slice(0, query.length - 2)).code
+        }
       },
       getToken: function (code, callback) {
         var options = {
