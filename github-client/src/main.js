@@ -57,3 +57,13 @@ new Vue({ // eslint-disable-line no-new
   template: '<App/>',
   components: { App }
 })
+
+router.beforeEach((to, from, next) => {
+  const authRequired = to.matched.some((route) => route.meta.auth)
+  const authed = store.getters.getAuthState
+  if (authRequired && !authed) {
+    next('/')
+  } else {
+    next()
+  }
+})
