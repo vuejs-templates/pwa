@@ -6,6 +6,7 @@ import repos from '@/components/repos'
 import issues from '@/components/issues'
 import gists from '@/components/gists'
 import singleRepo from '@/components/singleRepo'
+import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
 
@@ -19,27 +20,40 @@ export default new Router({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: Dashboard
+      component: Dashboard,
+      meta: { auth: true }
     },
     {
       path: '/repos',
       name: 'repos',
-      component: repos
+      component: repos,
+      meta: { auth: true }
     },
     {
       path: '/issues',
       name: 'issues',
-      component: issues
+      component: issues,
+      meta: { auth: true }
     },
     {
       path: '/gists',
       name: 'gists',
-      component: gists
+      component: gists,
+      meta: { auth: true }
     },
     {
-      path: '/singleRepo',
+      path: '/singleRepo/:owner/:name',
       name: 'singleRepo',
-      component: singleRepo
+      component: singleRepo,
+      meta: { auth: true }
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound,
+      meta: { auth: true }
     }
-  ]
+  ],
+  saveScrollPosition: true,
+  history: true
 })
