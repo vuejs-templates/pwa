@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 const initialState = {
   authenticated: false,
-  token: ''
+  token: '',
+  activeNav: 'repositories'
 }
 
 const state = Vue.util.extend({}, initialState)
@@ -37,7 +38,8 @@ const actions = {
 
 const getters = {
   getAuthState: state => { return state.authenticated },
-  getToken: state => { return state.token }
+  getToken: state => { return state.token },
+  getActiveNav: state => { return state.activeNav }
 }
 
 export default new Vuex.Store({

@@ -6,6 +6,8 @@ import repos from '@/components/repos'
 import issues from '@/components/issues'
 import gists from '@/components/gists'
 import singleRepo from '@/components/singleRepo'
+import singleGist from '@/components/singleGist'
+import singleIssue from '@/components/singleIssue'
 import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
@@ -15,7 +17,8 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello
+      component: Hello,
+      meta: { auth: false }
     },
     {
       path: '/dashboard',
@@ -45,6 +48,18 @@ export default new Router({
       path: '/singleRepo/:owner/:name',
       name: 'singleRepo',
       component: singleRepo,
+      meta: { auth: true }
+    },
+    {
+      path: '/singleGist/:name',
+      name: 'singleGist',
+      component: singleGist,
+      meta: { auth: true }
+    },
+    {
+      path: '/singleIssue/:id',
+      name: 'singleIssue',
+      component: singleIssue,
       meta: { auth: true }
     },
     {

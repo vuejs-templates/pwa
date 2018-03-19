@@ -13,9 +13,17 @@ import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { setContext } from 'apollo-link-context'
 import VueApollo from 'vue-apollo'
+import colors from 'vuetify/es5/util/colors'
 
 Vue.config.productionTip = false
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#8AEA92',
+    secondary: '#2c3e50',
+    accent: '#8c9eff',
+    error: colors.red.accent3
+  }
+})
 
 const httpLink = new HttpLink({
   // You should use an absolute URL here

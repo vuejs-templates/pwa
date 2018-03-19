@@ -11,39 +11,39 @@
     >
       <v-layout row wrap>
         <v-flex xs12>
-      <ul>
-        <li v-for="repo in viewer.repositories.nodes.slice().reverse()">
-          <router-link :to="{name: 'singleRepo', params: { owner: viewer.login, name: repo.name }}">
-              <v-card ripple tile append replace style="width: 75vh;">
-                <v-card-title primary-title>
-                  <div >
-                    <p class="headline text-sm-left">{{repo.name}}</p>
-                    <p class="grey--text text-sm-left">Created {{ repo.createdAt | moment("from") }}</p>
-                    <p class="grey--text text-sm-left">Forks: {{repo.forks.totalCount}}</p>
-                    <p class="grey--text text-sm-left">Disk Usage: {{repo.diskUsage}}</p>
-                    <ul class="text-sm-left">
-                      <li v-for="lang in repo.languages.nodes">
-                        <div class="text-xs-center">
-                          <v-chip v-bind:color="lang.color">{{lang.name}}</v-chip>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </v-card-title>
-                <v-card-text>
-                  <div>
-                    <p v-if="repo.description">{{repo.description}}</p>
-                  </div>
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn flat>Fork</v-btn>
-                  <!--<v-btn flat color="purple">Explore</v-btn>-->
-                  <v-spacer></v-spacer>
-                </v-card-actions>
-              </v-card>
-          </router-link>
-        </li>
-      </ul>
+          <ul>
+            <li v-for="repo in viewer.repositories.nodes.slice().reverse()">
+              <router-link :to="{name: 'singleRepo', params: { owner: repo.owner.login, name: repo.name }}">
+                <v-card ripple tile append replace style="width: 75vh;">
+                  <v-card-title primary-title>
+                    <div >
+                      <p class="headline text-sm-left">{{repo.name}}</p>
+                      <p class="body-2 grey--text text-sm-left">Created <span class="body-1">{{ repo.createdAt | moment("from") }}</span></p>
+                      <p class="body-2 grey--text text-sm-left">Forks: <span class="body-1">{{repo.forks.totalCount}}</span></p>
+                      <p class="body-2 grey--text text-sm-left">Disk Usage: <span class="body-1">{{repo.diskUsage}}</span></p>
+                      <!--<ul class="text-sm-left">-->
+                        <!--<li v-for="lang in repo.languages.nodes">-->
+                          <!--<div class="text-xs-center">-->
+                            <!--<v-chip v-bind:color="lang.color">{{lang.name}}</v-chip>-->
+                          <!--</div>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    </div>
+                  </v-card-title>
+                  <v-card-text>
+                    <div>
+                      <p class="" v-if="repo.description">{{repo.description}}</p>
+                    </div>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn flat>Fork</v-btn>
+                    <!--<v-btn flat color="purple">Explore</v-btn>-->
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </router-link>
+            </li>
+          </ul>
         </v-flex>
       </v-layout>
     </v-container>
@@ -58,8 +58,7 @@
     name: 'repos',
     data () {
       return {
-        viewer: [],
-        show: false
+        viewer: []
       }
     },
     apollo: {
@@ -71,6 +70,9 @@
                        repositories(last: $number_of_repos) {
                          nodes {
                           name
+                          owner{
+                            login
+                          }
                           id
                           description
                           stargazers {
@@ -87,6 +89,43 @@
                               color
                             }
                           }
+                          collaborators(first: 100){
+                            edges{
+                              node{
+                                name
+                              }
+                            }
+                          }
+                          commitComments(first:100){
+                            nodes{
+                              author{
+                                login
+                              }
+                              authorAssociation
+                            }
+                          }
+                          issues(first: 100){
+                            nodes{
+                              author{
+                                login
+                              }
+                              bodyText
+                              createdAt
+                            }
+                          }
+                          labels(first: 100){
+                            nodes{
+                              name
+                            }
+                          }
+                          pullRequests(first: 100){
+                            nodes{
+                              author{
+                                login
+                              }
+                              body
+                            }
+                          }
                          }
                        }
                      }
@@ -95,11 +134,6 @@
         variables: {
           number_of_repos: 100
         }
-      }
-    },
-    methods: {
-      goToSingleRepo: function (repoName) {
-        this.$router.go('/singleRepo/' + this.viewer.name + '/' + repoName)
       }
     }
   }
