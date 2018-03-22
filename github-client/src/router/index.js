@@ -8,6 +8,7 @@ import gists from '@/components/gists'
 import singleRepo from '@/components/singleRepo'
 import singleGist from '@/components/singleGist'
 import singleIssue from '@/components/singleIssue'
+import User from '@/components/User'
 import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
@@ -60,6 +61,12 @@ export default new Router({
       path: '/singleIssue/:id',
       name: 'singleIssue',
       component: singleIssue,
+      meta: { auth: true }
+    },
+    {
+      path: '/user/:login',
+      name: 'User',
+      component: User,
       meta: { auth: true }
     },
     {
