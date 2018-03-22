@@ -72,7 +72,7 @@
     data () {
       return {
         name: 'issues',
-        viewer: [],
+        viewer: null,
         tabItems: ['Created', 'Watched', 'Assigned', 'Mentioned']
       }
     },
