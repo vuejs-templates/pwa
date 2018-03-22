@@ -15,12 +15,16 @@
           </v-list-tile-action>
         </v-list-tile>
         <v-list-tile avatar tag="div">
-          <v-list-tile-avatar size="50" >
-            <img :src="viewer.avatarUrl" >
-          </v-list-tile-avatar>
-          <v-list-tile-content>
-            <v-list-tile-title>{{viewer.name}}</v-list-tile-title>
-          </v-list-tile-content>
+          <router-link :to="{name: 'User', params: { login: viewer.login}}">
+            <v-layout row align-center>
+              <v-list-tile-avatar size="50" >
+                <img :src="viewer.avatarUrl" >
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <v-list-tile-title>{{viewer.name}}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-layout>
+          </router-link>
           <v-list-tile-action>
             <v-btn icon @click.stop="mini = !mini">
               <v-icon>chevron_left</v-icon>
