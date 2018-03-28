@@ -8,7 +8,8 @@ Vue.use(Vuex)
 const initialState = {
   authenticated: false,
   token: '',
-  activeNav: 'repositories'
+  activeNav: 'repositories',
+  viewer: null
 }
 
 const state = Vue.util.extend({}, initialState)
@@ -25,6 +26,10 @@ const mutations = {
   setToken (state, token) {
     localStorage.setItem('token', token)
     state.token = token
+  },
+  setViewer (state, viewer) {
+    localStorage.setItem('viewer', viewer)
+    state.viewer = viewer
   }
 }
 
@@ -33,13 +38,17 @@ const actions = {
   setAuthState: ({ commit }) => commit('changeAuthState'),
   setToken (context, token) {
     context.commit('setToken', token)
+  },
+  setViewer (context, viewer) {
+    context.commit('setViewer', viewer)
   }
 }
 
 const getters = {
   getAuthState: state => { return state.authenticated },
   getToken: state => { return state.token },
-  getActiveNav: state => { return state.activeNav }
+  getActiveNav: state => { return state.activeNav },
+  getViewer: state => { return state.getViewer }
 }
 
 export default new Vuex.Store({
