@@ -4,17 +4,18 @@
     style="max-width: 85vh; margin: auto;"
     class=" lighten-3"
   >
+
     <v-container
       fluid
-      style="min-height: 0;"
+      style="min-height: 0; position: relative;"
       grid-list-lg
     >
       <v-layout row wrap>
         <v-flex xs12>
           <ul>
             <li v-for="repo in viewer.repositories.nodes.slice().reverse()">
-              <router-link :to="{name: 'singleRepo', params: { owner: repo.owner.login, name: repo.name }}">
-                <v-card ripple tile append replace style="width: 75vh;">
+              <router-link :to="{name: 'knownRepo', params: { owner: repo.owner.login, name: repo.name }}">
+                <v-card ripple tile append replace style="width: 75vh;" class="my-2">
                   <v-card-title primary-title>
                     <div >
                       <p class="headline text-sm-left">{{repo.name}}</p>
@@ -139,7 +140,6 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="sass" scoped>
 
 </style>

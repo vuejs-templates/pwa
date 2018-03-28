@@ -56,11 +56,12 @@ const apolloProvider = new VueApollo({
   defaultClient: apolloClient
 })
 
+Vue.prototype.gh = new GitHub({ token: store.getters.getToken })
+
 new Vue({ // eslint-disable-line no-new
   el: '#app',
   router,
   store,
-  GitHub,
   provide: apolloProvider.provide(),
   template: '<App/>',
   components: { App }
