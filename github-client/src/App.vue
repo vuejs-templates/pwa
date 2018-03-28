@@ -48,16 +48,38 @@
         <v-btn v-if="$store.getters.getAuthState" v-on:click="logout" color="secondary" class="white--text">Logout</v-btn>
       </div>
     </v-navigation-drawer>
-    <v-toolbar dark color="primary">
-        <v-toolbar-side-icon @click.native.stop="drawer = !drawer" dark>
-        </v-toolbar-side-icon>
-
-
+    <v-toolbar dark color="primary" extended>
+      <v-toolbar-side-icon @click.native.stop="drawer = !drawer" dark>
+      </v-toolbar-side-icon>
+      <router-link :to="{name: 'createRepo'}">
+        <v-btn
+          color="pink"
+          dark
+          small
+          absolute
+          bottom
+          right
+          fab
+          class="mr-5"
+        >
+          <v-icon>add</v-icon>
+        </v-btn>
+      </router-link>
       <v-toolbar-title class="white--text title-gh">GitHub Client</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>search</v-icon>
-      </v-btn>
+      <v-select
+        :items="searchableItems"
+        v-model="selectedSearch"
+        label="Select"
+        single-line
+        color="secondary"
+      ></v-select>
+      <v-text-field v-model="searchInput" color="secondary"></v-text-field>
+      <router-link :to="{name: 'Search', params: {filter: selectedSearch.text, input: searchInput}}">
+        <v-btn icon>
+          <v-icon>search</v-icon>
+        </v-btn>
+      </router-link>
       <v-btn icon>
         <v-icon>more_vert</v-icon>
       </v-btn>
@@ -69,7 +91,7 @@
         </keep-alive>
       </transition>
     </main>
-    <v-card height="200px" flat v-if="$store.getters.getAuthState" >
+    <v-card height="100px" flat v-if="$store.getters.getAuthState" style="background-color: transparent"  >
       <v-bottom-nav absolute :value="true" :active.sync="activeNav" color="white" class="footer--fixed" >
         <v-btn flat color="blue-grey" value="repositories" append replace to="/repos">
           <span>Repositories</span>
@@ -97,6 +119,13 @@
 
     name: 'app',
     data: () => ({
+      selectedSearch: '',
+      searchableItems: [
+        { text: 'Repositories' },
+        { text: 'Users' },
+        { text: 'Code' },
+        { text: 'Issues' }
+      ],
       activeNav: store.getters.getActiveNav,
       drawer: null,
       items: [
@@ -106,7 +135,8 @@
       ],
       mini: false,
       right: null,
-      viewer: []
+      viewer: [],
+      searchInput: ''
     }),
     apollo: {
       viewer: {
