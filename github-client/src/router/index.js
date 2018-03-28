@@ -5,10 +5,13 @@ import Dashboard from '@/components/Dashboard'
 import repos from '@/components/repos'
 import issues from '@/components/issues'
 import gists from '@/components/gists'
-import singleRepo from '@/components/singleRepo'
+import knownRepo from '@/components/knownRepo'
 import singleGist from '@/components/singleGist'
 import singleIssue from '@/components/singleIssue'
 import User from '@/components/User'
+import Search from '@/components/Search'
+import singleFile from '@/components/singleFile'
+import visitedRepo from '@/components/visitedRepo'
 import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
@@ -46,19 +49,19 @@ export default new Router({
       meta: { auth: true }
     },
     {
-      path: '/singleRepo/:owner/:name',
-      name: 'singleRepo',
-      component: singleRepo,
+      path: '/repo/:owner/:name',
+      name: 'knownRepo',
+      component: knownRepo,
       meta: { auth: true }
     },
     {
-      path: '/singleGist/:name',
+      path: '/gist/:name',
       name: 'singleGist',
       component: singleGist,
       meta: { auth: true }
     },
     {
-      path: '/singleIssue/:id',
+      path: '/issue/:id',
       name: 'singleIssue',
       component: singleIssue,
       meta: { auth: true }
@@ -67,6 +70,24 @@ export default new Router({
       path: '/user/:login',
       name: 'User',
       component: User,
+      meta: { auth: true }
+    },
+    {
+      path: '/search/:filter/:input',
+      name: 'Search',
+      component: Search,
+      meta: { auth: true }
+    },
+    {
+      path: '/file/:sha',
+      name: 'singleFile',
+      component: singleFile,
+      meta: { auth: true }
+    },
+    {
+      path: '/repo/:owner/:name',
+      name: 'visitedRepo',
+      component: visitedRepo,
       meta: { auth: true }
     },
     {

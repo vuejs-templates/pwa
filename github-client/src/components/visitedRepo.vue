@@ -67,14 +67,15 @@
               </div>
               <div v-if="item === 'Contributors'">
                 <ul >
-                  <li v-for="user in repository.collaborators.edges">
-                    <router-link :to="{name: 'User', params: {login: user.node.login}}">
+                  <li v-for="user in contributors">
+
+                    <router-link :to="{name: 'User', params: {login: user.login}}">
                       <v-layout align-center class="mb-2" row>
                         <v-avatar>
-                          <img :src="user.node.avatarUrl" alt="John">
+                          <img :src="user.avatar_url" alt="John">
                         </v-avatar>
                         <v-spacer></v-spacer>
-                        <span class="body-2">{{user.node.login}}</span>
+                        <span class="body-2">{{user.login}}</span>
                       </v-layout>
                     </router-link>
                   </li>
@@ -105,13 +106,13 @@
 </template>
 
 <script>
-  import GitHub from 'github-api'
-  import store from '../store'
+  // import GitHub from 'github-api'
+  // import store from '../store'
   import VueMarkdown from 'vue-markdown'
   import gql from 'graphql-tag'
 
   export default {
-    name: 'singleRepo',
+    name: 'visitedRepo',
     components: {
       VueMarkdown
     },
@@ -136,18 +137,19 @@
         watched: false,
         watchCount: 0,
         forkCount: 0,
-        stateToSubscribe: ''
+        stateToSubscribe: '',
+        collaborators: null
       }
     },
     apollo: {
       repository: {
-        query: gql`
-          query($repo_name: String!, $repo_owner: String!, $number: Int!) {
+        query: gql`query($repo_name: String!, $repo_owner: String!, $number: Int!) {
                       repository(owner: $repo_owner, name: $repo_name){
                         id
                         viewerSubscription
                         viewerCanSubscribe
                         viewerHasStarred
+                        viewerPermission
                         forkCount
                         hasWikiEnabled
                         stargazers{
@@ -156,15 +158,8 @@
                         watchers{
                           totalCount
                         }
-                          collaborators(last: $number) {
-                          edges {
-                            node {
-                              login
-                              avatarUrl
-                            }
-                          }
-                        }
-                        issues(last: 100) {
+
+                        issues(last: $number) {
                           nodes{
                             author{
                               avatarUrl
@@ -189,32 +184,14 @@
           }
         },
         fetchPolicy: 'cache-then-network'
-      },
-      viewer: {
-        query: gql`query getviewer{
-                    viewer{
-                      login
-                      id
-                    }
-                  }`
-      },
-      subscription: {
-        mutation: gql`mutation subscribeRepository($user: String!, $state: SubscriptionState!, $subId: ID!) {
-                        updateSubscription(input:{clientMutationId: $user, state: $state, subscribableId: $subId }) {
-                          clientMutationId:clientMutationId
-                          subscribable:subscribable {
-                            id
-                          }
-                        }
-                      }`
       }
     },
     mounted () {
       var _self = this
-      const gh = new GitHub({ token: store.getters.getToken })
-      var user = gh.getUser()
+
+      var user = _self.gh.getUser()
       console.log(user)
-      _self.repo = gh.getRepo(this.repositoryOwner, this.repositoryName)
+      _self.repo = _self.gh.getRepo(this.repositoryOwner, this.repositoryName)
       _self.repo.getContents().then(function (result) {
         // console.log(result.data)
         result.data.forEach(function (each) {
@@ -336,6 +313,12 @@
           if (_self.watched) return true
           else return false
         }
+      },
+      viewerIsOwner: function () {
+        // var _self = this
+        return true
+        // if (_self.viewer.login === _self.repository.repositoryOwner) return true
+        // else return false
       }
     }
   }
@@ -346,11 +329,11 @@
     margin: 1vh 1vw 1vh
     font-size: 2em
 
-  .icon:focus
-    outline: none
+    .icon:focus
+      outline: none
 
-  .isTrue
-    margin-right: 1vw
-    font-size: 2em
-    color: green
+    .isTrue
+      margin-right: 1vw
+      font-size: 2em
+      color: green
 </style>
