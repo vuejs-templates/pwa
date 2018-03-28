@@ -11,9 +11,7 @@
 </template>
 
 <script>
-  import store from '../store'
   import gql from 'graphql-tag'
-  import GitHub from 'github-api'
 
   export default {
     name: 'single-gist',
@@ -47,9 +45,9 @@
       }
     },
     mounted: function () {
-      var gh = new GitHub({ token: store.getters.getToken })
+      var _self = this
       this.gistName = this.$route.params.name
-      this.gist = gh.getGist(this.gistName)
+      this.gist = _self.gh.getGist(this.gistName)
       this.gist.read().then(function (data) {
         var files = data.data.files
         console.log(files)
