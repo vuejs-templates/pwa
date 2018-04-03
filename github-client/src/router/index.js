@@ -12,6 +12,8 @@ import User from '@/components/User'
 import Search from '@/components/Search'
 import singleFile from '@/components/singleFile'
 import visitedRepo from '@/components/visitedRepo'
+import CreateRepo from '@/components/CreateRepo'
+import PullRequest from '@/components/PullRequest'
 import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
@@ -88,6 +90,18 @@ export default new Router({
       path: '/repo/:owner/:name',
       name: 'visitedRepo',
       component: visitedRepo,
+      meta: { auth: true }
+    },
+    {
+      path: '/create/',
+      name: 'CreateRepo',
+      component: CreateRepo,
+      meta: { auth: true }
+    },
+    {
+      path: '/repo/:owner/:name/pull/:number',
+      name: 'PullRequest',
+      component: PullRequest,
       meta: { auth: true }
     },
     {
