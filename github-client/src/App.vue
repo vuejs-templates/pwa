@@ -51,10 +51,9 @@
     <v-toolbar dark color="primary" extended>
       <v-toolbar-side-icon @click.native.stop="drawer = !drawer" dark>
       </v-toolbar-side-icon>
-      <router-link :to="{name: 'createRepo'}">
+      <router-link :to="{name: 'CreateRepo'}">
         <v-btn
           color="pink"
-          dark
           small
           absolute
           bottom
