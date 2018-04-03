@@ -68,7 +68,6 @@
               <div v-if="item === 'Collaborators'">
                 <ul >
                   <li v-for="user in repository.collaborators.nodes">
-
                     <router-link :to="{name: 'User', params: {login: user.login}}">
                       <v-layout align-center class="mb-2" row>
                         <v-avatar>
@@ -86,11 +85,13 @@
                   <li v-for="issue in repository.issues.nodes">
                     <v-layout row>
                       <v-layout align-center class="mb-2" column>
-                        <v-avatar>
-                          <img :src="issue.author.avatarUrl" alt="John">
-                        </v-avatar>
-                        <v-spacer></v-spacer>
-                        <span class="body-2">{{issue.author.login}}</span>
+                        <router-link :to="{name: 'User', params: {login: issue.author.login}}">
+                          <v-avatar>
+                            <img :src="issue.author.avatarUrl" alt="John">
+                          </v-avatar>
+                          <v-spacer></v-spacer>
+                          <span class="body-2">{{issue.author.login}}</span>
+                        </router-link>
                       </v-layout>
                       <div>{{issue.title}}</div>
                     </v-layout>
@@ -113,6 +114,31 @@
                   </li>
                 </ul>
               </div>
+              <div v-if="item === 'Pull requests'">
+                <ul >
+                  <li v-for="pr in repository.pullRequests.nodes">
+                    <v-layout row>
+                      <router-link :to="{name: 'PullRequest', params: {owner: repositoryOwner, name: repositoryName, number: pr.number}}">
+                        <v-card ripple tile append replace style="width: 75vh;" class="my-2">
+                          <v-card-title primary-title>
+                            <span class="body-2">#{{pr.number}} {{pr.title}} by <router-link :to="{name: 'User', params: {login: pr.author.login}}">{{pr.author.login}}</router-link></span>
+                          </v-card-title>
+                          <v-card-text>
+                            <v-spacer></v-spacer>
+                            <span class="body-2">Created {{pr.createdAt | moment("from")}}</span>
+                            <v-spacer></v-spacer>
+                            <span class="body-2">State: {{pr.state}}</span>
+                            <v-spacer></v-spacer>
+                            <span class="body-2" :v-if="pr.merged">Merged {{pr.mergedAt | moment("from")}}</span>
+                            <v-spacer></v-spacer>
+                            <span class="body-2" :v-if="pr.mer">Closed {{pr.closedAt | moment("from")}}</span>
+                          </v-card-text>
+                        </v-card>
+                      </router-link>
+                    </v-layout>
+                  </li>
+                </ul>
+              </div>
             </v-layout>
           </v-card-text>
         </v-card>
@@ -124,8 +150,10 @@
 <script>
   // import GitHub from 'github-api'
   // import store from '../store'
+  import Vue from 'vue'
   import VueMarkdown from 'vue-markdown'
   import gql from 'graphql-tag'
+  Vue.use(require('vue-moment'))
 
   export default {
     name: 'singleRepo',
@@ -140,7 +168,7 @@
         contributors: [],
         currentItem: 'Readme',
         items: [
-          'Readme', 'Files', 'Commits', 'Collaborators', 'Issues', 'Contributors'
+          'Readme', 'Files', 'Commits', 'Collaborators', 'Issues', 'Contributors', 'Pull requests'
         ],
         readme: '',
         commits: [],
@@ -192,6 +220,24 @@
                             state
                             id
                             publishedAt
+                          }
+                        }
+                        pullRequests(first:100){
+                          nodes{
+                            id
+                            author{
+                              login
+                              avatarUrl
+                            }
+                            state
+                            body
+                            merged
+                            mergedAt
+                            closed
+                            closedAt
+                            createdAt
+                            number
+                            title
                           }
                         }
                       }

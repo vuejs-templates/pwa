@@ -14,7 +14,7 @@
         <button v-if="repository.hasWikiEnabled" class="icon" v-on:click="">
           <i class="fas fa-book"></i>
         </button>
-        <button class="icon" v-on:click="">
+        <button class="icon" v-on:click="forkRepo">
           <i class="fas fa-code-branch"></i>
         </button>
         <span>{{repository.forkCount}}</span>
@@ -97,6 +97,17 @@
                   </li>
                 </ul>
               </div>
+              <div v-if="item === 'Pull requests'">
+                <ul >
+                  <li v-for="pr in repository.pullRequests.nodes">
+                    <v-layout row>
+                      <v-layout align-center class="mb-2" column>
+                        <div>{{pr}}</div>
+                      </v-layout>
+                    </v-layout>
+                  </li>
+                </ul>
+              </div>
             </v-layout>
           </v-card-text>
         </v-card>
@@ -124,7 +135,7 @@
         contributors: [],
         currentItem: 'Readme',
         items: [
-          'Readme', 'Files', 'Commits', 'Contributors', 'Issues'
+          'Readme', 'Files', 'Commits', 'Contributors', 'Issues', 'Pull requests'
         ],
         readme: '',
         commits: [],
@@ -171,6 +182,23 @@
                             state
                             id
                             publishedAt
+                          }
+                        }
+                        pullRequests(first:$number){
+                          nodes{
+                            id
+                            author{
+                              login
+                            }
+                            state
+                            body
+                            merged
+                            mergedAt
+                            closed
+                            closedAt
+                            createdAt
+                            number
+                            title
                           }
                         }
                       }
@@ -290,6 +318,14 @@
           _self.watched = false
           console.log(_self.watched)
         }
+      },
+      forkRepo: function () {
+        var _self = this
+        _self.repo.fork().then(function (response) {
+          if (response.status === 202) {
+            _self.$router.push('/repos')
+          }
+        })
       }
     },
     computed: {
