@@ -78,7 +78,28 @@
           <v-card>
             <v-container>
               <li v-for="repo in user.repositories.nodes.slice().reverse()">
-                <router-link :to="{name: 'singleRepo', params: { owner: repo.owner.login , name: repo.name }}">
+                <router-link v-if="repo.viewerPermission === 'WRITE'" :to="{name: 'knownRepo', params: { owner: repo.owner.login , name: repo.name }}">
+                  <v-card ripple tile append replace style="width: 75vh;" >
+                    <v-card-title primary-title>
+                      <v-layout row>
+                        <v-flex xs4 sm6>
+                          <p class="headline text-sm-left">{{repo.name}}</p>
+                          <p class="body-2 grey--text text-sm-left">Created <span class="body-1">{{ repo.createdAt | moment("from") }}</span></p>
+                          <p class="body-2 grey--text text-sm-left">Forks: <span class="body-1">{{repo.forkCount}}</span></p>
+                          <p class="body-2 grey--text text-sm-left">Stars: <span class="body-1">{{repo.stargazers.totalCount}}</span></p>
+                        </v-flex>
+                      </v-layout>
+                      <!--<ul class="text-sm-left">-->
+                      <!--<li v-for="lang in repo.languages.nodes">-->
+                      <!--<div class="text-xs-center">-->
+                      <!--<v-chip v-bind:color="lang.color">{{lang.name}}</v-chip>-->
+                      <!--</div>-->
+                      <!--</li>-->
+                      <!--</ul>-->
+                    </v-card-title>
+                  </v-card>
+                </router-link>
+                <router-link  v-else :to="{name: 'visitedRepo', params: { owner: repo.owner.login , name: repo.name }}">
                   <v-card ripple tile append replace style="width: 75vh;" >
                     <v-card-title primary-title>
                       <v-layout row>
@@ -172,7 +193,7 @@
           <v-card>
             <v-container>
               <li v-for="starredRepo in user.starredRepositories.nodes.slice().reverse()">
-                <router-link :to="{name: 'singleRepo', params: { owner: starredRepo.owner.login , name: starredRepo.name }}">
+                <router-link :to="{name: 'visitedRepo', params: { owner: starredRepo.owner.login , name: starredRepo.name }}">
                   <v-card ripple append replace style="width: 75vh;" >
                     <v-card-title primary-title>
                       <v-layout row>
@@ -236,6 +257,7 @@
                 name
                 createdAt
                 forkCount
+                viewerPermission
                 stargazers{
                   totalCount
                 }
