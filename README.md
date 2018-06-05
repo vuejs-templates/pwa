@@ -1,3 +1,6 @@
+## Maintenance Mode
+**The code in this repo is in maintenance mode, with limited plans for future changes. If you have an issue with the current codebase, we encourage you to try out [`vue-cli` 3.0](https://github.com/vuejs/vue-cli/blob/dev/README.md), using its [new `pwa` plugin](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa), which is being actively developed.**
+
 # vue-pwa-boilerplate
 
 > A full-featured [PWA](https://developers.google.com/web/progressive-web-apps/) template with webpack, hot-reload, lint-on-save, unit testing & css extraction.
