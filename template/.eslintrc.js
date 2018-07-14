@@ -2,8 +2,8 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   parserOptions: {
+    parser: 'babel-eslint',
     sourceType: 'module'
   },
   env: {
@@ -11,14 +11,17 @@ module.exports = {
   },
   {{#if_eq lintConfig "standard"}}
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  extends: ['plugin:vue/essential', 'standard'],
   {{/if_eq}}
   {{#if_eq lintConfig "airbnb"}}
-  extends: 'airbnb-base',
+  extends: ['plugin:vue/essential', 'airbnb-base'],
+  {{/if_eq}}
+  {{#if_eq lintConfig "none"}}
+  extends: ['plugin:vue/essential'],
   {{/if_eq}}
   // required to lint *.vue files
   plugins: [
-    'html'
+    'vue'
   ],
   {{#if_eq lintConfig "airbnb"}}
   // check if imports actually resolve
